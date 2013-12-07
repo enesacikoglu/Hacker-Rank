@@ -1,4 +1,4 @@
-package com.luckybrews.hackerrank.algorithms;
+package com.luckybrews.hackerrank.algorithms.search;
 
 import static org.junit.Assert.*;
 import java.util.Arrays;
