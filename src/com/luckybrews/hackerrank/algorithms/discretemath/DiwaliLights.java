@@ -16,6 +16,8 @@ import org.junit.Test;
  * Note: Lighting two bulbs *-* is different from **-
  * 
  * https://www.hackerrank.com/challenges/diwali-lights
+ * 
+ * http://en.wikipedia.org/wiki/Modular_exponentiation
  */
 
 public class DiwaliLights {
