@@ -12,7 +12,10 @@ import org.junit.Test;
  *
  * 11/12/2013
  * 
- * On the eve of Diwali, Hari is decorating his house with a serial light bulb set. The serial light bulb set has N bulbs placed sequentially on a string which is programmed to change patterns every second. If atleast one bulb in the set is on at any given instant of time, how many different patterns of light can the serial light bulb set produce?
+ * On the eve of Diwali, Hari is decorating his house with a serial light bulb set. 
+ * The serial light bulb set has N bulbs placed sequentially on a string which is programmed to 
+ * change patterns every second. If atleast one bulb in the set is on at any given instant of time, 
+ * how many different patterns of light can the serial light bulb set produce?
  * Note: Lighting two bulbs *-* is different from **-
  * 
  * https://www.hackerrank.com/challenges/diwali-lights
@@ -39,10 +42,10 @@ public class DiwaliLights {
 	}
 	
 	private static int countPatterns(int bulbs) {
-		return iterativeModularPow(2, bulbs, MODULO) - 1;
+		return iterative_ModularPow(2, bulbs, MODULO) - 1;
 	}
 	
-	private static int iterativeModularPow(int base, int exp, int modulo) {
+	private static int iterative_ModularPow(int base, int exp, int modulo) {
 		int ret = 1;
 		for (int i=0; i<exp; i++) {
 			ret = (ret * base) % MODULO;
@@ -50,9 +53,11 @@ public class DiwaliLights {
 		return ret;
 	}
 	
-	private static int bigInt_ModularPow(long base, int exp, int modulo) {
-		BigInteger ret = new BigInteger(""+base);
-		return (int) Math.pow(2, base) % MODULO;
+	private static int bigInt_ModularPow(long base, int expo, int modulo) {
+		BigInteger bbase = new BigInteger(""+base);
+		BigInteger bexpo = new BigInteger(""+expo);
+		BigInteger bmodulo = new BigInteger(""+modulo);
+		return bbase.modPow(bexpo, bmodulo).intValue();
 	}
 	
 	@Test
@@ -65,20 +70,22 @@ public class DiwaliLights {
 	@Test
 	public void testTime() {
 		
-		final int ITER = 10_000_000;
+		final int ITER = 100_000;
+		
+		int ret = 0;
 		
 		long now = System.currentTimeMillis();
 		for (int i=0; i<ITER; i++) {
-			bigInt_ModularPow(2, i, MODULO);
+			ret = bigInt_ModularPow(2, i, MODULO);
 		}
 		long time1 = System.currentTimeMillis() - now;
-		System.out.println(time1);
+		System.out.println(time1 + " " + ret);
 		
 		now = System.currentTimeMillis();
 		for (int i=0; i<ITER; i++) {
-			iterativeModularPow(2, i, MODULO);
+			ret = iterative_ModularPow(2, i, MODULO);
 		}
 		long time2 = System.currentTimeMillis() - now;
-		System.out.println(time2);
+		System.out.println(time2 + " " + ret);
 	}
 }
